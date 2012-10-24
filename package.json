@@ -1,0 +1,14 @@
+{
+  "name": "JSRockstar.in",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app"
+  },
+  "dependencies": {
+    "express": "3.0.0rc5",
+    "ejs": "*",
+    "express-partials": "0.0.6",
+    "grunt-contrib-less": "~0.3.2"
+  }
+}
