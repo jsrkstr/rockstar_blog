@@ -9,6 +9,5 @@
     "express": "3.0.0rc5",
     "ejs": "*",
     "express-partials": "0.0.6"
-    // "grunt-contrib-less": "~0.3.2" only for dev
   }
 }
