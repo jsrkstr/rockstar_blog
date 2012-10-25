@@ -8,10 +8,15 @@
   "dependencies": {
     "express": "*",
     "ejs": "*",
-    "express-partials": "0.0.6"
+    "express-partials": "0.0.6",
+    "reed": "~0.9.8-2",
+    "gzippo": "~0.2.0"
+  },
+  "devDependencies": {
+    "grunt-contrib-less": "~0.3.2"
   },
   "engines": {
     "node": "0.8.12",
-    "npm":  "1.1.49"
+    "npm": "1.1.49"
   }
 }

@@ -4,12 +4,20 @@ module.exports = function(grunt) {
     var allJs = [
         "public/javascripts/jquery-1.8.2.min.js",
         "public/javascripts/jquery.mousewheel.min.js",
-        "public/javascripts/app.js"
+        "public/javascripts/underscore.js",
+        "public/javascripts/backbone.js",
+        "public/javascripts/app.js",
+        "public/javascripts/collections/recent_posts.js",
+        "public/javascripts/collections/posts.js",
+        "public/javascripts/views/recent_post.js",
+        "public/javascripts/views/post.js",
+        "public/javascripts/router/router.js"
     ];
 
     // list of all css and scss to be concatenated and compiled
     var allCss = [
         "public/vendor/Metro-UI-CSS/css/modern.css",
+        "public/vendor/Metro-UI-CSS/css/modern-responsive.css",
         "public/vendor/Metro-UI-CSS/css/theme-dark.css",
         "public/stylesheets/app.css"
     ];
@@ -42,7 +50,7 @@ module.exports = function(grunt) {
                 "function getS(){",
                     "if(sIndex < allJs.length){",
                         "s = document.createElement('script');",
-                        "s.setAttribute('src', allJs[sIndex].replace('public/', ''));",
+                        "s.setAttribute('src', allJs[sIndex].replace('public', ''));",
                         "s.onload = getS;",
                         "document.head.appendChild(s);",
                         "sIndex++;",

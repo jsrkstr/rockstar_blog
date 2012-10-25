@@ -1,3 +1,19 @@
-body {
+/*body {
     background: #1d1d1d;
+}
+*/
+
+.tile-post {
+	
+	.badge {
+		width : auto !important;
+	}	
+}
+
+.page-region-post {
+	background-color : white;
+
+	h1,h2,h3,h4 {
+		color : black;
+	}
 }

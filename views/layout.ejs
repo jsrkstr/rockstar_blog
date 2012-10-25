@@ -8,16 +8,54 @@
 	    <meta name="author" content="Sachin Saluja">
 	    <meta name="keywords" content="windows 8, modern style, modern ui, style, modern, css, framework">
 
-	    <link href="build/stylesheets/custom.css" rel="stylesheet">
-
-	    <script src="build/javascripts/custom.js"></script>
+	    <link href="/build/stylesheets/custom.css" rel="stylesheet">
 
 	    <title>JSRockstar's Blog</title>
 
 	</head>
 
 	<body class="modern-ui" onresize="Resize()">
-		<%- body %>
+		
+		<div class="page secondary fixed-header">
+		    <div class="page-header ">
+		        <div class="page-header-content">
+		            <div class="user-login">
+		                <a href="#/posts/ABOUT-ME">
+		                    <div class="name">
+		                        <span class="first-name">Sachin</span>
+		                        <span class="last-name">Saluja</span>
+		                    </div>
+		                    <div class="avatar">
+		                        <img src="/images/myface.jpg"/>
+		                    </div>
+		                </a>
+		            </div>
+
+		            <h1>JSRockstar</h1>
+		        </div>
+		    </div>
+
+		    <div class="page-region">
+				<%- body %>        
+		    </div>
+		</div>
+		
+		
+		<script type="text/template" id="templ-post-tile">
+		    <div class="tile double tile-post" data-post-id={{= id }}>
+		        <div class="tile-content image">
+		            <img src="{{= image  }}" alt="">
+		        </div>
+		        <div class="brand bg-color-orange">
+		            <img class="icon" src="images/Rss128.png">
+		            <p class="text">{{= title }}</p>
+		            <div class="badge">{{= tags.split(" ")[0] }}</div>
+		        </div>
+		    </div>
+		</script>
+
+		<script src="/build/javascripts/custom.js"></script>
+
 	</body>
 
 </html>

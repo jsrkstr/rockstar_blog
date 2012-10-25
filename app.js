@@ -7,7 +7,9 @@ var express = require('express')
   , partials = require('express-partials')
   , routes = require('./routes')
   , http = require('http')
-  , path = require('path');
+  , path = require('path')
+  , gzippo = require('gzippo');
+
 
 var app = express();
 
@@ -24,7 +26,7 @@ app.configure(function(){
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(app.router);
-  app.use(express.static(path.join(__dirname, 'public')));
+  app.use(gzippo.staticGzip(__dirname + '/public', { contentTypeMatch : /text|javascript|json|font/ }));
 
 });
 
@@ -32,6 +34,10 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
+app.reed = require('reed');
+app.reed.open("./public/posts");
+
+app.getRecentPosts = require("./models/recent_posts");
 
 // setup all routes
 routes(app);
