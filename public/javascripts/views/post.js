@@ -4,12 +4,15 @@ App.views.Post = Backbone.View.extend({
 
 	className : "page-region-content page-region-post",
 
+	template : _.template($("#templ-post").html()),
+	
+
 	initialize : function(){
-		this.model.on("change", this.render, this);
+		this.model.on("reset", this.render, this);
 	},
 
 	render : function(){
-		this.$el.html(this.model.get("content"));
+		this.$el.html(this.template(this.model.toJSON()));
 		return this;
 	}
 

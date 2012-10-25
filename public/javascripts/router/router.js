@@ -51,7 +51,7 @@ App.Router = Backbone.Router.extend({
     postRegion.remove();
 
     App.currentPageView = new App.views.Post({ model : post });
-    $(".page-region").append(App.currentPageView.render().el);
+    $(".page-region").append(App.currentPageView.el);
 
   }
 
