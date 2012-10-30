@@ -1,8 +1,6 @@
 App.views.Post = Backbone.View.extend({
-	
-	tagName : "div",
 
-	className : "page-region-content page-region-post",
+	el : $(".page-region-content.page-region-post"),
 
 	template : _.template($("#templ-post").html()),
 
@@ -12,18 +10,33 @@ App.views.Post = Backbone.View.extend({
 
 
 	initialize : function(){
-		if(this.model)
+		// cases other than server render
+		if(this.model){
 			this.model.on("change", this.render, this);
+			this.render();
+		} else {
+			this.renderedArchive();
+		}
 	},
 
 	render : function(){
-		this.$el.html(this.template(this.model.toJSON()));
+		this.$(".page-content").html(this.template(this.model.toJSON()));
+		if(!this.renderedArchive){
+			this.renderedArchive();
+		}
 		return this;
 	},
 
 	navigateBack : function(){
 		history.back();
 		return false;
+	},
+
+
+	renderedArchive : function(){
+		this.renderedArchive = true;
+		var archiveView = new App.views.Archive({ collection : App.allPosts });
+		this.$(".right-sidebar").html(archiveView.render().el);
 	}
 
 });

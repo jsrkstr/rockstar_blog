@@ -38,6 +38,10 @@ App = {
     init : function(){
         // AddMouseWheel();
 
+        App.currentPosts = new App.collections.Posts();
+
+        App.allPosts = new Backbone.Collection(_all_posts);
+
         App.router = new App.Router();
 
         Backbone.history.start({ pushState : true });

@@ -30,31 +30,31 @@ App.Router = Backbone.Router.extend({
 
 
   post : function(post_id){
-    $(".page-region-content.tiles").hide();
+    var tilesRegion = $(".page-region-content.tiles");
+    tilesRegion.hide();
 
     var postRegion = $(".page-region-content.page-region-post");
+    postRegion.show();
 
-    if(postRegion.data("post-id") == post_id){
-      postRegion.show();
-      var view = new App.views.Post();
-      view.setElement($(".page-region-content")[0]);
-      return true;
+    if(postRegion.data("post-id") == post_id){ // rendered from server
+
+      postRegion.data("post-id", null);
+      App.currentPageView  = new App.views.Post();
+
+    } else if(!App.currentPageView || !App.currentPageView.model || App.currentPageView.model.id != post_id){ // js render
+
+      var post = App.currentPosts.get(post_id);
+
+      if(!post){
+        post = App.currentPosts.add({ id : post_id }).get(post_id);
+        post.fetch();
+      }
+
+      App.currentPageView = new App.views.Post({ model : post });
+
+    } else { // rendered by js
+      // do nothing
     }
-
-    if(!App.currentPosts)
-      App.currentPosts = new App.collections.Posts();
-
-    var post = App.currentPosts.get(post_id);
-
-    if(!post){
-      post = App.currentPosts.add({ id : post_id }).get(post_id);
-      post.fetch();
-    }
-
-    postRegion.remove();
-
-    App.currentPageView = new App.views.Post({ model : post });
-    $(".page-region").append(App.currentPageView.render().el);
 
   }
 

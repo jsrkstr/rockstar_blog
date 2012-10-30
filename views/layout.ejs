@@ -55,12 +55,15 @@
 		</script>
 
 		<script type="text/template" id="templ-post">
-			<div class="page snapped">
-				<a href="" class="back-button big page-back"></a>
-		    </div>
-		    <div class="page fill">
-		    	{{= typeof(content) != "undefined" ? content : 'spinner!!' }}
-		    </div>
+		    {{= typeof(content) != "undefined" ? content : 'spinner!!' }}
+		</script>
+
+		<script type="text/template" id="templ-archive-item">
+		    <ul>
+		    	{{ for (var i = 0; i < items.length; i++) { }}
+		    		<li><a href={{= items[i].id }}> {{= items[i].title }} </a> </li>
+		    	{{ } }}
+		    </ul>
 		</script>
 
 		<script src="/build/javascripts/custom.js"></script>

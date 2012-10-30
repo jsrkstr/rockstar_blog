@@ -11,6 +11,7 @@ module.exports = function(grunt) {
         "public/javascripts/collections/posts.js",
         "public/javascripts/views/recent_post.js",
         "public/javascripts/views/post.js",
+        "public/javascripts/views/archive.js",
         "public/javascripts/router/router.js"
     ];
 

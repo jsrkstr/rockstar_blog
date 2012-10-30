@@ -1079,7 +1079,8 @@ a:active,.link:active{color:rgba(148, 102, 255, 0.6);}
 .page .page-header .page-header-content .user-login .name{color:#fff;}
 
 .tile-post .badge{width:auto !important;}
-.page-region-post{background-color:white;overflow:hidden;}.page-region-post h1,.page-region-post h2,.page-region-post h3,.page-region-post h4{color:black;}
+.page-region-post{background-color:white;overflow:hidden;display:none;}.page-region-post h1,.page-region-post h2,.page-region-post h3,.page-region-post h4{color:black;}
 .page-region-post .image-container{width:500px;}
-.page-region-post .fill{width:90%;box-sizing:border-box;padding-left:10%;padding-right:10%;}
-.page-region-post .snapped{width:10%;border:none;}
+.page-region-post .left-sidebar{width:10%;float:left;}
+.page-region-post .right-sidebar{width:20%;float:right;}
+.page-region-post .page-content{width:70%;box-sizing:border-box;padding-left:5%;padding-right:5%;float:left;}
