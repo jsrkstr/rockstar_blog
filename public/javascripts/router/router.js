@@ -6,6 +6,7 @@ App.Router = Backbone.Router.extend({
     "posts/:post_id"                   : "post"
   },
 
+
   home : function(){
 
     $(".page-region-content.page-region-post").hide();
@@ -21,8 +22,8 @@ App.Router = Backbone.Router.extend({
     if(!App.recentPosts){
       App.recentPosts = new App.collections.RecentPosts();
       var recentPostsView = new App.views.RecentPosts({ collection : App.recentPosts });
-      App.recentPosts.fetch();
-      $(".page-region-content.tiles").prepend(recentPostsView.render().el);
+      App.recentPosts.reset(_all_posts.slice(0, 10));
+      $(".page-region-content.tiles").prepend(recentPostsView.el);
     }
 
   },
@@ -35,6 +36,8 @@ App.Router = Backbone.Router.extend({
 
     if(postRegion.data("post-id") == post_id){
       postRegion.show();
+      var view = new App.views.Post();
+      view.setElement($(".page-region-content")[0]);
       return true;
     }
 
@@ -51,7 +54,7 @@ App.Router = Backbone.Router.extend({
     postRegion.remove();
 
     App.currentPageView = new App.views.Post({ model : post });
-    $(".page-region").append(App.currentPageView.el);
+    $(".page-region").append(App.currentPageView.render().el);
 
   }
 

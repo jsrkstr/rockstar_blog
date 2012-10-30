@@ -51,6 +51,7 @@ app.configure("production", function(){
 app.reed.open("./public/posts");
 
 app.getRecentPosts = require("./models/recent_posts");
+app.getRecentPosts(app, function(){});// init
 
 // setup all routes
 routes(app);

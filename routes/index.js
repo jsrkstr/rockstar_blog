@@ -8,20 +8,19 @@ module.exports = function(app){
 	// GET home page.
 	app.get("/", function(req, res){
 
-		res.render('index');
+		res.render('index', { allPosts : app.allPosts || [] });
 	});
 
 
 	// GET a blog entry.
 	app.get("/posts/:post_id", function(req, res){
-		console.log("id - ", req.params.post_id);
+
 		app.reed.get(req.params.post_id, function(err, metadata, htmlContent){
 			if(err || req.params.post_id != metadata.id || !htmlContent){
 				res.render("errors/500");
 			}
-			console.log("out id - ", metadata.id);
 
-			res.render('post', { content : htmlContent, meta : metadata });
+			res.render('post', { content : htmlContent, meta : metadata, allPosts : app.allPosts || [] });
 		});
 	});
 

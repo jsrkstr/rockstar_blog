@@ -1,8 +1,12 @@
 <div class="page-region-content page-region-post" data-post-id=<%- meta.id %> >
 	<div class="page snapped">
-		<a href="/" class="back-button big page-back"></a>
+		<a href="" class="back-button big page-back"></a>
 	</div>
 	<div class="page fill">
 		<%- content %>
 	</div>
 </div>
+
+<script type="text/javascript">
+	_all_posts = <%- JSON.stringify(allPosts) %>;
+</script>

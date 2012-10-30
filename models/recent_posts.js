@@ -11,26 +11,18 @@ module.exports = function(app, callback){
 
 	if(app.allPosts.length == 0){
 
-		app.reed.list(function(err, titles){
+		app.reed.all(function(err, posts){
 
-			app.allPosts = titles;
+			for (var i = 0; i < posts.length; i++) {
+				delete posts[i].htmlContent;
+				delete posts[i].metadata.markdown;
 
-			var length = Math.min(10, titles.length);
-
-			app.reed.getMetadata(titles[0], savePost);
-
-			function savePost(err, meta){
-
-				delete meta.markdown;
-				app.recentPosts.push(meta);
-
-				if(app.recentPosts.length == length) {
-					callback(false, app.recentPosts);
-				} else {
-					app.reed.getMetadata(titles[app.recentPosts.length], savePost);
-				}
+				app.allPosts.push(posts[i].metadata);
 			};
 
+			app.recentPosts = app.allPosts.slice(0, 10);
+
+			callback(false, app.recentPosts);
 		});
 
 	} else {

@@ -6,14 +6,24 @@ App.views.Post = Backbone.View.extend({
 
 	template : _.template($("#templ-post").html()),
 
+	events : {
+		"click .back-button" : "navigateBack"
+	},
+
 
 	initialize : function(){
-		this.model.on("change", this.render, this);
+		if(this.model)
+			this.model.on("change", this.render, this);
 	},
 
 	render : function(){
 		this.$el.html(this.template(this.model.toJSON()));
 		return this;
+	},
+
+	navigateBack : function(){
+		history.back();
+		return false;
 	}
 
 });
