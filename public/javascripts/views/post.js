@@ -15,14 +15,14 @@ App.views.Post = Backbone.View.extend({
 			this.model.on("change", this.render, this);
 			this.render();
 		} else {
-			this.renderedArchive();
+			this.renderArchive();
 		}
 	},
 
 	render : function(){
 		this.$(".page-content").html(this.template(this.model.toJSON()));
 		if(!this.renderedArchive){
-			this.renderedArchive();
+			this.renderArchive();
 		}
 		return this;
 	},
@@ -33,7 +33,7 @@ App.views.Post = Backbone.View.extend({
 	},
 
 
-	renderedArchive : function(){
+	renderArchive : function(){
 		this.renderedArchive = true;
 		var archiveView = new App.views.Archive({ collection : App.allPosts });
 		this.$(".right-sidebar").html(archiveView.render().el);
