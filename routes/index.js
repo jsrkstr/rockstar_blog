@@ -20,6 +20,7 @@ module.exports = function(app){
 				res.render("errors/500");
 			}
 			console.log("out id - ", metadata.id);
+
 			res.render('post', { content : htmlContent, meta : metadata });
 		});
 	});
@@ -43,10 +44,24 @@ module.exports = function(app){
 
 		app.reed.get(req.params.post_id, function(err, metadata, htmlContent){
 			console.log("out id - ", metadata.id);
-			if(err || req.params.post_id != metadata.id || !htmlContent){
+			console.log("error - ", err);
+			
+			if(err){
 				res.render("errors/500");
 			}
-			res.json({ content : htmlContent, meta : metadata });
+
+			if(req.params.post_id != metadata.id){
+				console.log("ids not matched");
+				res.render("errors/500");
+			}
+
+			if(!htmlContent){
+				console.log("no html content");
+				res.render("errors/500");
+			}
+
+			res.json({ content : htmlContent.toString("utf8") , meta : metadata });
+
 		});
 	});
 
