@@ -48,12 +48,6 @@ app.configure("production", function(){
 
 });
 
-app.reed.configure({
-      host: 'angler.redistogo.com',
-      port: 9594,
-      password: 'fd0e5292f4bfab83090beb3096a81ad2'
-  });
-
 app.reed.open("./public/posts");
 
 app.getRecentPosts = require("./models/recent_posts");
