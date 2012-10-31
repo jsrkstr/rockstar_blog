@@ -31,7 +31,7 @@
 
 	.right-sidebar {
 		width : 20%;
-		float: right;
+		float: left;
 	}
 
 	.page-content {
@@ -40,5 +40,13 @@
 		padding-left: 5%;
 		padding-right: 5%;
 		float: left;
+	}
+
+	.disqus-box {
+		float: left;
+		margin-left: 15%;
+		margin-right: 25%;
+		margin-top: 50px;
+		width : 60%;
 	}
 }

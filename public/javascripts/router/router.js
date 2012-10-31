@@ -38,8 +38,8 @@ App.Router = Backbone.Router.extend({
 
     if(postRegion.data("post-id") == post_id){ // rendered from server
 
+      App.currentPageView  = new App.views.Post({ postId : postRegion.data("post-id")});
       postRegion.data("post-id", null);
-      App.currentPageView  = new App.views.Post();
 
     } else if(!App.currentPageView || !App.currentPageView.model || App.currentPageView.model.id != post_id){ // js render
 

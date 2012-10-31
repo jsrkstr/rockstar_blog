@@ -1,4 +1,4 @@
-/*! JSRockstar.in - v0.1 - 2012-10-30
+/*! JSRockstar.in - v0.1 - 2012-10-31
 * http://jsrockstar.in
 * Copyright (c) 2012; */
 
