@@ -65,14 +65,21 @@ App.views.Post = Backbone.View.extend({
 			return false;
 
 		disqusBox.data("post-id", this.model.id);
+
+		var identifier = this.model.id;
 		
-		DISQUS.reset({
-		  reload: true,
-		  config: function () {  
-		    this.page.identifier = this.model.id;  
-		    // this.page.url = document.location.href;
-		  }
-		});
+		setTimeout(function() {
+			
+			DISQUS.reset({
+			  reload: true,
+			  config: function () {  
+			    this.page.identifier = identifier;  
+			    // this.page.url = document.location.href;
+			  }
+			});
+
+		}, 500);
+
 	}
 
 });
