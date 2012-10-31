@@ -1083,5 +1083,5 @@ a:active,.link:active{color:rgba(148, 102, 255, 0.6);}
 .page-region-post .image-container{width:500px;}
 .page-region-post .left-sidebar{width:10%;float:left;}
 .page-region-post .right-sidebar{width:20%;float:left;}
-.page-region-post .page-content{width:70%;box-sizing:border-box;padding-left:5%;padding-right:5%;float:left;}
+.page-region-post .page-content{width:70%;box-sizing:border-box;padding-left:5%;padding-right:5%;float:left;border-left:1px #CCC solid;}
 .page-region-post .disqus-box{float:left;margin-left:15%;margin-right:25%;margin-top:50px;width:60%;}

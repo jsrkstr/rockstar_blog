@@ -59,9 +59,10 @@
 		</script>
 
 		<script type="text/template" id="templ-archive-item">
+			<h3>Archive</h3>
 		    <ul>
 		    	{{ for (var i = 0; i < items.length; i++) { }}
-		    		<li><a href={{= items[i].id }}> {{= items[i].title }} </a> </li>
+		    		<li><a href="/posts/{{= items[i].id }}" > {{= items[i].title }} </a> </li>
 		    	{{ } }}
 		    </ul>
 		</script>
