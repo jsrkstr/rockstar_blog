@@ -92,7 +92,7 @@
 
   var BlobBuilder = this.BlobBuilder || this.MozBlobBuilder || this.WebKitBlobBuilder || StubbedBlobBuilder
     , URL = this.URL || this.webkitURL || StubbedURL
-    , has_webworker = !!this.Worker
+    , has_webworker = false//!!this.Worker
     , WebWorker = this.Worker
 
   if(has_webworker) {

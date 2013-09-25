@@ -92,7 +92,7 @@ Game.onReady(function(){
                     x : gs.random(900, 1000),
                     y : gs.random(500, 600)
                 },
-                serverTimeDiffAvg : 50 //Game.pingTest.serverTimeDiffAvg
+                serverTimeDiffAvg : 0 //Game.pingTest.serverTimeDiffAvg
             });
         
 
@@ -108,7 +108,7 @@ Game.onReady(function(){
                     x : gs.random(10, 100),
                     y : gs.random(100, 200)
                 },
-                serverTimeDiffAvg : 50// Game.pingTest.serverTimeDiffAvg
+                serverTimeDiffAvg : 0// Game.pingTest.serverTimeDiffAvg
             });
 
             Game.time = Date.now();
@@ -164,8 +164,8 @@ Game.model.Plane = Backbone.Model.extend({
             actionUpDown : 0,
             actionLeftRight : 0
         },
-        captureInterval : 200,
-        applyInterval : 200
+        captureInterval : 50,
+        applyInterval : 50
     },
     
     initialize: function(args) {
