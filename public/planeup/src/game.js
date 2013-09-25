@@ -142,5 +142,5 @@ $(function() {
         return true;
     }
     
-    // Game.trigger("ready");
+    Game.trigger("ready");
 });
