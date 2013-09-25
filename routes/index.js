@@ -5,6 +5,10 @@
 
 module.exports = function(app){
 
+	app.get("/planeup", function(req, res){
+		res.redirect("/planeup/index.html");
+	});
+
 	// GET home page.
 	app.get("/", function(req, res){
 
