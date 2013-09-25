@@ -125,22 +125,3 @@ Game.onReady(function(){
 
 
 
-// for now, game is ready when dom is ready
-$(function() {  
-    Backbone.sync = function(method, model, options) {
-        
-        var error = options.error || function() {};
-        var success = options.success || function() {};
-        
-        // Don't pass the callbacks to the backend
-        delete options.error;
-        delete options.success;
-
-        // hack
-        var resp = model.toJSON();
-        success(resp);
-        return true;
-    }
-    
-    Game.trigger("ready");
-});
