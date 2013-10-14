@@ -16,6 +16,8 @@ Game = _.extend({
 
     appReadyStatus : false,
 
+    currentLevel : 0,
+
     // accepts backbone view
     addEntity : function(entity){
         gs.addEntity(entity);
@@ -50,6 +52,31 @@ Game = _.extend({
 
     trash : function(obj){
         obj = null;
+    },
+
+
+    startNewLevel : function(){
+
+        var newLevel = Game.currentLevel + 1;
+        Game.aliveAICount = newLevel;
+
+        for(var i=0; i < newLevel; i++){
+
+            Game.allPlanes.create({
+                a : 0,
+                id : Date.now() + 100000,
+                u : 0,
+                direction : 0,
+                master : true,
+                AI : true, 
+                team : "red",
+                currPosition : {
+                    x : gs.random(10, 100),
+                    y : gs.random(100, 200)
+                },
+                serverTimeDiffAvg : 0// Game.pingTest.serverTimeDiffAvg
+            });
+        }
     }
 
 }, Backbone.Events);
@@ -78,7 +105,7 @@ Game.onReady(function(){
 
     // Game.pingTest = new Pings().bind("completed", function(){
 
-        for(var  i  = 0; i < 1; i++){
+        // for(var  i  = 0; i < 1; i++){
 
             Game.human = Game.allPlanes.create({
                 a : 0,
@@ -95,25 +122,26 @@ Game.onReady(function(){
                 serverTimeDiffAvg : 0 //Game.pingTest.serverTimeDiffAvg
             });
         
+            Game.startNewLevel();
 
-            Game.AI = Game.allPlanes.create({
-                a : 0,
-                id : Date.now() + 100000,
-                u : 0,
-                direction : 0,
-                master : true,
-                AI : true, 
-                team : "red",
-                currPosition : {
-                    x : gs.random(10, 100),
-                    y : gs.random(100, 200)
-                },
-                serverTimeDiffAvg : 0// Game.pingTest.serverTimeDiffAvg
-            });
+            // Game.AI = Game.allPlanes.create({
+            //     a : 0,
+            //     id : Date.now() + 100000,
+            //     u : 0,
+            //     direction : 0,
+            //     master : true,
+            //     AI : true, 
+            //     team : "red",
+            //     currPosition : {
+            //         x : gs.random(10, 100),
+            //         y : gs.random(100, 200)
+            //     },
+            //     serverTimeDiffAvg : 0// Game.pingTest.serverTimeDiffAvg
+            // });
 
             Game.time = Date.now();
  
-        }
+        // }
 
     // });
 
@@ -834,10 +862,8 @@ Game.view.PlaneView = Backbone.View.extend({
         if(h < 50){
             if(h > 0)
                 this.set_state("injured"); 
-            else{
-                this.set_state("dead"); 
-                this.update = function(){};
-                this.model.fireBullet = function(){};
+            else if(h == 0){
+                this.onDeath();
             }
         } else {
             this.set_state("healthy"); 
@@ -846,6 +872,35 @@ Game.view.PlaneView = Backbone.View.extend({
         $("#" + this.model.get("team") + "-health").html(h);
     },
     
+
+    onDeath : function(){
+
+        
+
+        if(this.model.get("team") == "blue"){
+            var refresh = confirm("You Crashed at level " + (Game.currentLevel + 1) + " !! Restart??");
+            if(refresh)
+                window.location.reload();
+
+        } else {
+
+            this.set_state("dead"); 
+            this.update = function(){};
+            this.model.fireBullet = function(){};
+            Game.aliveAICount--;
+
+            if(Game.aliveAICount == 0){
+                var nextLevel = confirm("Victory!! Start level " + (Game.currentLevel + 2) +" ??")
+
+                if(nextLevel){
+                    Game.currentLevel++;
+                    Game.startNewLevel();
+                    Game.human.set({health : 100}, {local : true});
+                }
+            }    
+        }
+    },
+
 
     healthy_draw : function(context) {
         this.drawPlane(context, "healthy");
